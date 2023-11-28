@@ -1,0 +1,52 @@
+import re
+import random
+
+def generate_words(regex, alphabet, num_words):
+    words = set()
+
+    for _ in range(num_words):
+        word = ""
+        stack = []
+
+        for char in regex:
+            if char == '(':
+                stack.append(word)
+                word = ""
+            elif char == ')':
+                repeated_word = stack.pop()
+                repeat_count = random.randint(1, 3)  # Rastgele 1 ile 3 arasında tekrar
+                word = repeated_word + (word * repeat_count)
+            elif char == '*':
+                continue
+            else:
+                word += char
+
+        if word:
+            words.add(word)
+
+    return words
+
+def check_membership(word, words):
+    return word in words
+
+def main():
+    alphabet = input("Alfabeyi giriniz (örneğin, ab): ")
+    regex = input("Düzenli ifadeyi giriniz (örneğin, (a+b)*): ")
+    num_words = int(input("L dilinin kaç kelimesini görmek istiyorsunuz?: "))
+
+    if re.match(r'^[a-zA-Z()+*]+$', regex) and re.match(f'^[{alphabet}]+$', alphabet):
+        print("Düzenli ifade S alfabesinden üretilebilir. Kelimeleriniz listeleniyor...")
+        words = generate_words(regex, alphabet, num_words)
+        words_list = sorted(list(words))
+        print(f"L = {{ {', '.join(words_list)} }}")
+
+        bonus_word = input("\nBONUS: Kontrol edilecek kelimeyi giriniz: ")
+        if check_membership(bonus_word, words):
+            print("Bu kelime L diline aittir.")
+        else:
+            print("Bu kelime L diline ait değildir.")
+    else:
+        print("Düzenli ifade S alfabesinden üretilemez!")
+
+if __name__ == "__main__":
+    main()
