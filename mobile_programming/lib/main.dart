@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_programming/pages/other_pages/eventadd_page.dart';
 import 'package:mobile_programming/pages/homework3_page.dart';
 import 'package:mobile_programming/pages/homework5_page.dart';
+import 'package:mobile_programming/pages/homework7_page.dart';
 import 'package:mobile_programming/pages/pattern_page.dart';
 import 'package:mobile_programming/shared/constants_shared.dart';
 
 import 'pages/homework1_page.dart';
 import 'pages/homework4_page.dart';
 import 'pages/homework6_page.dart';
+import 'pages/homework8_page.dart';
 import 'pages/homeworkd2_page.dart';
 import 'shared/theme_shared.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -34,7 +39,10 @@ class MyApp extends StatelessWidget {
         '/homework3': (context) => HomeWork3Page(height: height, width: width),
         '/homework4': (context) => HomeWork4Page(height: height, width: width),
         '/homework5': (context) => HomeWork5Page(),
-        '/homework6': (context) => HomeWork6Page(),
+        '/homework6': (context) => const HomeWork6Page(),
+        '/homework7': (context) => const HomeWork7Page(),
+        '/homework8': (context) => const HomeWork8Page(),
+        '/eventadd': (context) => const EventAddPage(),
       },
       home: PatternPage(
         height: height,

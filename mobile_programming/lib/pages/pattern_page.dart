@@ -12,7 +12,7 @@ class PatternPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> pageList = [
-      for (int i = 0; i < 6; i++) 'homework${i + 1}',
+      for (int i = 0; i < 8; i++) 'homework${i + 1}',
     ];
     return Scaffold(
       body: SafeArea(
