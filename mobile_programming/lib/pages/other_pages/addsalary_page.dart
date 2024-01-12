@@ -85,15 +85,13 @@ class _AddSalaryPageState extends State<AddSalaryPage> {
     // Eşleşen çalışanlara bonus eklemek için döngü
     for (Employee matchingEmployee in matchingEmployees) {
       // Eğer seçilen çalışan ile aynı kimliğe sahip değilse, bonus ekleyin
-      if (matchingEmployee.id != widget.employee.id) {
-        double updatedAmount = matchingEmployee.calculateSalaryWithBonus();
-        Salary newSalary = Salary(
-          employeeId: matchingEmployee.id!,
-          amount: updatedAmount,
-          date: DateTime.now().toIso8601String(),
-        );
-        await _databaseManager.insertSalary(newSalary);
-      }
+      double updatedAmount = matchingEmployee.calculateSalaryWithBonus();
+      Salary newSalary = Salary(
+        employeeId: matchingEmployee.id!,
+        amount: updatedAmount,
+        date: DateTime.now().toIso8601String(),
+      );
+      await _databaseManager.insertSalary(newSalary);
     }
     Navigator.pop(context); // Ekranı kapat
   }
